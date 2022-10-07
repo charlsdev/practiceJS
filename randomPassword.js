@@ -12,6 +12,8 @@ const generatePass = (
   letLower: boolean, 
   letUpper: boolean
 ) => {
+  if (lgtCharacters < 8) return 'La contraseña debe de tener al menos de 8 caracteres'
+  
   const optCharacter = [
     ...(number ? numbers : []),
     ...(symbol ? symbols : []),
@@ -19,9 +21,7 @@ const generatePass = (
     ...(letUpper ? lettersUpper : [])
   ]
   
-  let pass: string = ''
-  
-  if (lgtCharacters === 0) return ''
+  let pass: string = ''	
   
   for(let a = 0; a < lgtCharacters; a++) {
     const idx = Math.floor(Math.random() * optCharacter.length)

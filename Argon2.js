@@ -1,0 +1,22 @@
+let { hash, verify } = require('argon2')
+
+const encryptPassword = async (passwords: any[]) => {
+  passwords.forEach(async (pass: string) => {
+    const passEnc = await hash(pass);
+    console.log(passEnc);
+  });
+};
+
+encryptPassword([
+  'Benito123',
+  'Julio123',
+  'Julio',
+  'Pepito123@'
+]);
+
+const verifyPassword = async (passEncrypt: string, passPlane: string) => {
+  const res = await verify(passEncrypt, passPlane);
+  console.log(res);
+}
+
+verifyPassword('Julio123', '$2a$10$FGYop6aWZ3If1qN4A9awI.kOe9H/BO7Kg8/uw60i6Xy4sVs1h6baC')
